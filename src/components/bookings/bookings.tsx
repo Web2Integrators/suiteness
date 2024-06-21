@@ -1,15 +1,15 @@
-import { Resource, component$, useSignal } from "@builder.io/qwik";
+import { component$, } from "@builder.io/qwik";
 import { Link } from "@builder.io/qwik-city";
 import { useBookings } from "~/routes/bookings/index@bookings";
-import { Popover } from "@qwik-ui/headless";
-import { LuInfo } from "@qwikest/icons/lucide";
-import useBookingDetailsResource from "../hooks/useResource";
+
+
+
 import { BookingDetailsPopUp } from "./bookingDetailsPopUp";
 
 export const Bookings = component$(() => {
-  const bookingId = useSignal<number>();
+
   const bookings = useBookings();
-  const { bookingDetail } = useBookingDetailsResource(bookingId);
+
   return (
     <>
       <div class="mx-4 overflow-x-auto">

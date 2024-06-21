@@ -1,5 +1,5 @@
 import { routeLoader$ } from "@builder.io/qwik-city";
-import type { Booking } from "~/shared/types/types";
+
 import { getBookingDetails } from "~/shared/utility/fetch";
 
 

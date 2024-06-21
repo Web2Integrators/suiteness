@@ -14,10 +14,13 @@ export const BookingDetailsPopUp = component$(
       <>
         <Popover.Root  class="p-2" floating="right-end" gutter={4}>
           <Popover.Trigger popovertarget="booking-id" class="popover-trigger">
+            <div  onClick$={() => (bookingId.value = cbookingId)}>
             <LuInfo
-              onClick$={() => (bookingId.value = cbookingId)}
+             
               class="text-2xl"
             ></LuInfo>
+            </div>
+            
           </Popover.Trigger>
           <Popover.Panel id="booking-id" class="popover-panel ">
             <Resource
