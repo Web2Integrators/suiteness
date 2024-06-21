@@ -4,6 +4,7 @@ import { useBookings } from "~/routes/bookings/index@bookings";
 import { Popover } from "@qwik-ui/headless";
 import { LuInfo } from "@qwikest/icons/lucide";
 import useBookingDetailsResource from "../hooks/useResource";
+import { BookingDetailsPopUp } from "./bookingDetailsPopUp";
 
 export const Bookings = component$(() => {
   const bookingId = useSignal<number>();
@@ -34,82 +35,14 @@ export const Bookings = component$(() => {
               <tr key={index}>
                 <th class="text-center">
                   <Link
-                    class="link link-info m-4 p-6"
+                    class="link link-info text-base"
                     href={`/bookings/${booking.id}`}
                   >
                     {booking.id}
                   </Link>
                 </th>
                 <th>
-                  <Popover.Root gutter={3}>
-                    <Popover.Trigger
-                      popovertarget="booking-id"
-                      class="popover-trigger"
-                    >
-                      <LuInfo
-                        onClick$={() => {
-                          bookingId.value = booking.id;
-                        }}
-                        class="text-2xl"
-                      ></LuInfo>
-                    </Popover.Trigger>
-                    <Popover.Panel id="booking-id" class="popover-panel ">
-                      <Resource
-                        value={bookingDetail}
-                        onPending={() => <>Loading...</>}
-                        onRejected={(error) => <>Error: {error.message}</>}
-                        onResolved={(bd) => {
-                          return (
-                            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-                            bd.customer && (
-                              <>
-                                <div class="card w-96 bg-base-100 shadow-xl">
-                                  <div class="card-body">
-                                    <h2 class="card-title">
-                                      {bd.customer.firstName}{" "}
-                                      {bd.customer.lastName}
-                                    </h2>
-                                    <div class="text-gray-500">
-                                      CheckInDate: {bd.checkInDate}
-                                    </div>
-                                    <div class="text-gray-500">
-                                      CheckOutDate: {bd.checkOutDate}
-                                    </div>
-                                    <div class="text-gray-500">
-                                      CreatedAt: {bd.createdAt}
-                                    </div>
-                                    <div class="text-gray-500">
-                                      UpdatedAt: {bd.updatedAt}
-                                    </div>
-                                    <div class="text-gray-500">
-                                      Hotel: {bd.hotel.name}
-                                    </div>
-                                    <div class="text-gray-500">
-                                      Room: {bd.room.name}
-                                    </div>
-                                    <div class="text-gray-500">
-                                      Occupancy: {bd.occupancy}
-                                    </div>
-                                    <div class="text-gray-500">
-                                      Total: {bd.total}
-                                    </div>
-                                    <div class="card-actions justify-end">
-                                      <Link
-                                        href={`/bookings/${booking.id}`}
-                                        class="btn btn-primary"
-                                      >
-                                        Details
-                                      </Link>
-                                    </div>
-                                  </div>
-                                </div>
-                              </>
-                            )
-                          );
-                        }}
-                      />
-                    </Popover.Panel>
-                  </Popover.Root>
+                  <BookingDetailsPopUp cbookingId={booking.id} />
                 </th>
                 <td>{booking.hotelName}</td>
                 <td>{booking.checkInDate}</td>
