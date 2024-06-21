@@ -1,7 +1,7 @@
 import { Resource, component$, useSignal } from "@builder.io/qwik";
 import { Popover } from "@qwik-ui/headless";
 import { LuInfo } from "@qwikest/icons/lucide";
-import useBookingDetailsResource from "../hooks/useResource";
+import useBookingDetailsResource from "../../shared/hooks/useResource";
 import { Link } from "@builder.io/qwik-city";
 export type BookingDetailsPopUpProps = {
   cbookingId: number;

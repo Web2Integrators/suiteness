@@ -1,4 +1,4 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useContextProvider, useStore } from "@builder.io/qwik";
 import {
   QwikCityProvider,
   RouterOutlet,
@@ -6,7 +6,9 @@ import {
 } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/router-head/router-head";
 
-import "./global.css";
+import "./css/global.css";
+import type { AppState } from "./shared/_state/app-state.type";
+import { APP_STATE_CONTEXT_ID } from "./shared/_state/app-state-context-id";
 
 export default component$(() => {
   /**
@@ -15,6 +17,14 @@ export default component$(() => {
    *
    * Don't remove the `<head>` and `<body>` elements.
    */
+
+  const appState = useStore<AppState>({
+   
+    isSidebarOpened: false,
+   
+    routes: [],
+  });
+  useContextProvider(APP_STATE_CONTEXT_ID, appState);
 
   return (
     <QwikCityProvider>

@@ -34,6 +34,7 @@
     "@builder.io/qwik-city": "^1.5.7",
     "@qwik-ui/headless": "^0.4.4",
     "@qwikest/icons": "^0.0.13",
+    "@unpic/qwik": "^0.0.46" ,
     "@types/eslint": "^8.56.10",
     "@types/node": "^20.12.7",
     "@typescript-eslint/eslint-plugin": "^7.7.1",
@@ -52,5 +53,5 @@
     "vite-tsconfig-paths": "^4.2.1",
     "wrangler": "^3.0.0"
   },
-  "dependencies": {}
+  "dependencies": { }
 }
