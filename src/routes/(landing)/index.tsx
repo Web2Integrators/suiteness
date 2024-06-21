@@ -1,15 +1,17 @@
 import { component$ } from "@builder.io/qwik";
-import type { DocumentHead } from "@builder.io/qwik-city";
+import { Link, type DocumentHead } from "@builder.io/qwik-city";
 
 export default component$(() => {
   return (
     <>
-      <h1>Hi 👋</h1>
+      <h1 class="bg-slate-500">Hi 👋</h1>
+      <button class="btn">Hello daisyUI</button>
       <div>
         Can't wait to see what you build with qwik!
         <br />
         Happy coding.
       </div>
+      <Link href="/bookings">Bookings</Link>  
     </>
   );
 });

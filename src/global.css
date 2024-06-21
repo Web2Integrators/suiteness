@@ -1,0 +1,25 @@
+/**
+ * Tailwind CSS imports
+ * View the full documentation at https://tailwindcss.com
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.popover-transition {
+    opacity: 0;
+    transition:
+      opacity 0.5s,
+      display 0.5s,
+      overlay 0.5s;
+    transition-behavior: allow-discrete;
+  }
+   
+  .popover-transition[data-open] {
+    opacity: 1;
+  }
+   
+  .popover-transition[data-closing] {
+    opacity: 0;
+  }
