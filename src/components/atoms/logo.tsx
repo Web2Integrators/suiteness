@@ -17,7 +17,7 @@ export const Logo = component$(({ logoName }: LogoProps) => {
   };
   return (
     <div>
-      <Link class="inline-flex" href="/anonymous/home/" aria-label="Cruip">
+      <Link class="inline-flex" href="/" aria-label="Cruip">
         <ImageCmp imageData={imageData} />
       </Link>
     </div>

@@ -1,5 +1,4 @@
 import { $, component$, useContext } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
 import { HiBars4Solid } from "@qwikest/icons/heroicons";
 import { Logo } from "~/components/atoms/logo";
 import { Navs } from "~/components/atoms/routes";
@@ -40,13 +39,7 @@ export const BookingsHeader = component$(() => {
           </div>
           {/* Log in*/}
 
-          <Link
-            href="/auth/signup/"
-            class="rounded border bg-blue-500 px-4 py-2 font-bold text-white no-underline hover:bg-blue-700"
-          >
-            log In
-          </Link>
-        </div>
+                 </div>
       </div>
     </>
   );

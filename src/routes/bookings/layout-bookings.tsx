@@ -12,34 +12,14 @@ export default component$(() => {
   useTask$(async () => {
     appState.routes = [
       {
-        label: "Product",
-        href: "/Bookings",
-      },
-      {
-        label: "Solutions",
+        label: "Home",
         href: "/",
       },
       {
-        label: "Pricing",
-        href: "/users/pricing",
+        label: "Bookings",
+        href: "/bookings/",
       },
-      {
-        label: "Blogs",
-        href: "/users/blogs",
-      },
-      {
-        label: "About",
-        href: "/users/about",
-      },
-      {
-        label: "Download",
-        href: "/users/download",
-      },
-
-      {
-        label: "Settings",
-        href: "/users/settings",
-      },
+      
     ];
   });
 

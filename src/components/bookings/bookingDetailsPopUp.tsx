@@ -57,7 +57,7 @@ export const BookingDetailsPopUp = component$(
                             Occupancy: {bd.occupancy}
                           </div>
                           <div class="text-gray-500">Total: {bd.total}</div>
-                          <div class="card-actions justify-end">
+                          <div class="card-actions justify-start">
                             <Link
                               href={`/bookings/${cbookingId}`}
                               class="btn btn-primary"

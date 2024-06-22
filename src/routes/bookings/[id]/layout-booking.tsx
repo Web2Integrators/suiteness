@@ -1,14 +1,15 @@
-import { Slot, component$ } from '@builder.io/qwik';
+import { Slot, component$ } from "@builder.io/qwik";
+import { BookingHeader } from "~/components/layout-structure/booking/bookingHeader";
 
 export default component$(() => {
   return (
     <>
-        <div>
-      <h1>Booking layout</h1>
       <div>
-      <Slot />
+       <BookingHeader></BookingHeader>
+        <div>
+          <Slot />
+        </div>
       </div>
-    </div>
     </>
-  )
+  );
 });

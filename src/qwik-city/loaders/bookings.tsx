@@ -9,7 +9,7 @@ export const useBookingsData = routeLoader$(async () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": "4496fe94-01ee-4f9e-8378-6cf6134a7c90",
+        "x-api-key": import.meta.env.PUBLIC_SUITENESS_API_KEY,
       },
     });
   } catch (err) {
