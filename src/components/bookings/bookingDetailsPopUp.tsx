@@ -3,24 +3,21 @@ import { Popover } from "@qwik-ui/headless";
 import { LuInfo } from "@qwikest/icons/lucide";
 import useBookingDetailsResource from "../../shared/hooks/useResource";
 import { Link } from "@builder.io/qwik-city";
+import moment from "moment";
 export type BookingDetailsPopUpProps = {
-  cbookingId: number;
+  currentBookingId: number;
 };
 export const BookingDetailsPopUp = component$(
-  ({ cbookingId }: BookingDetailsPopUpProps) => {
+  ({ currentBookingId }: BookingDetailsPopUpProps) => {
     const bookingId = useSignal<number>();
     const { bookingDetail } = useBookingDetailsResource(bookingId);
     return (
       <>
-        <Popover.Root  class="p-2" floating="right-end" gutter={4}>
+        <Popover.Root class="p-2" floating="right-end" gutter={4}>
           <Popover.Trigger popovertarget="booking-id" class="popover-trigger">
-            <div  onClick$={() => (bookingId.value = cbookingId)}>
-            <LuInfo
-             
-              class="text-2xl"
-            ></LuInfo>
+            <div onClick$={() => (bookingId.value = currentBookingId)}>
+              <LuInfo class="text-2xl"></LuInfo>
             </div>
-            
           </Popover.Trigger>
           <Popover.Panel id="booking-id" class="popover-panel ">
             <Resource
@@ -37,17 +34,13 @@ export const BookingDetailsPopUp = component$(
                           <h2 class="card-title">
                             {bd.customer.firstName} {bd.customer.lastName}
                           </h2>
+                         
                           <div class="text-gray-500">
-                            CheckInDate: {bd.checkInDate}
-                          </div>
-                          <div class="text-gray-500">
-                            CheckOutDate: {bd.checkOutDate}
-                          </div>
-                          <div class="text-gray-500">
-                            CreatedAt: {bd.createdAt}
-                          </div>
-                          <div class="text-gray-500">
-                            UpdatedAt: {bd.updatedAt}
+                            LengthOf Stay:{" "}
+                            {moment(bd.checkOutDate).diff(
+                              moment(bd.checkInDate),
+                              "days",
+                            )}
                           </div>
                           <div class="text-gray-500">
                             Hotel: {bd.hotel.name}
@@ -56,10 +49,13 @@ export const BookingDetailsPopUp = component$(
                           <div class="text-gray-500">
                             Occupancy: {bd.occupancy}
                           </div>
-                          <div class="text-gray-500">Total: {bd.total}</div>
+                          <div class="text-gray-500">
+                            Total: {bd.total / 100} {bd.currencyCode}
+                          </div>
+
                           <div class="card-actions justify-start">
                             <Link
-                              href={`/bookings/${cbookingId}`}
+                              href={`/bookings/${currentBookingId}`}
                               class="btn btn-primary"
                             >
                               Details

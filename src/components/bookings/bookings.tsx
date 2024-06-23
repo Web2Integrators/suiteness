@@ -1,14 +1,14 @@
 import { component$ } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
 import { useBookings } from "~/routes/bookings/index@bookings";
-
 import { BookingDetailsPopUp } from "./bookingDetailsPopUp";
 import moment from "moment";
+import { LinkBookingIds } from "../atoms/linkBookingIds";
 
 export const Bookings = component$(() => {
   const bookings = useBookings();
 
   const total = bookings.value.reduce((acc, booking) => acc + booking.total, 0);
+  const currencyCode = bookings.value[0]?.currencyCode;
 
   return (
     <>
@@ -22,14 +22,16 @@ export const Bookings = component$(() => {
               <th class="text-base">Hotel Name</th>
               <th class="text-base">checkInDate</th>
               <th class="text-base">checkOutDate</th>
-              <th class="text-base">LenghOfStay</th>
+              <th class="text-base">LengthOfStay</th>
               <th class="text-base">Paid</th>
               <th class="text-base">Occupancy</th>
               <th class="text-base">Cancelled</th>
-              <th class="text-base">currency</th>
+
               <th class="flex flex-col text-base">
                 <span>Total</span>
-                <span>({total})</span>
+                <span>
+                  ({total / 100}) {currencyCode}{" "}
+                </span>
               </th>
             </tr>
           </thead>
@@ -37,15 +39,10 @@ export const Bookings = component$(() => {
             {bookings.value.map((booking, index: string | number) => (
               <tr key={index}>
                 <th class="text-center">
-                  <Link
-                    class="link link-info text-base"
-                    href={`/bookings/${booking.id}`}
-                  >
-                    {booking.id}
-                  </Link>
+                  <LinkBookingIds id={booking.id} />
                 </th>
                 <th>
-                  <BookingDetailsPopUp cbookingId={booking.id} />
+                  <BookingDetailsPopUp currentBookingId={booking.id} />
                 </th>
                 <td>{booking.hotelName}</td>
                 <td>
@@ -57,7 +54,7 @@ export const Bookings = component$(() => {
                 <td>
                   {moment(booking.checkOutDate).diff(
                     moment(booking.checkInDate),
-                    "days"
+                    "days",
                   )}
                 </td>
                 <td class={booking.paid ? "bg-green-500" : "bg-red-500"}>
@@ -67,22 +64,10 @@ export const Bookings = component$(() => {
                 <td class={booking.cancelled ? "bg-red-500" : "bg-green-500"}>
                   {booking.cancelled.toString()}
                 </td>
-                <td>{booking.currencyCode}</td>
-                <td>{booking.total}</td>
+
+                <td>{booking.total / 100} </td>
               </tr>
             ))}
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>Total</td>
-              <td>{total}</td>
-            </tr>
           </tbody>
         </table>
       </div>
